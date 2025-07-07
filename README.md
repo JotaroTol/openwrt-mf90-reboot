@@ -1,4 +1,4 @@
-# ZTE MF90 Modem Rebooter untuk OpenWrt (STB B860H)
+# ZTE MF90 Modem Rebooter untuk OpenWrt
 
 Script untuk me-reboot modem ZTE MF90 dari perangkat OpenWrt. Praktis untuk otomatisasi reboot modem, terutama ketika dikombinasikan dengan Internet Detector agar anti bengong.
 
@@ -24,7 +24,7 @@ Script untuk me-reboot modem ZTE MF90 dari perangkat OpenWrt. Praktis untuk otom
 * **Jalankan Script di Terminal**
 
     ```bash
-    wget --no-check-certificate -O /tmp/install.sh https://github.com/YourUsername/YourRepoName/raw/main/install.sh
+    wget --no-check-certificate -O /tmp/install.sh https://github.com/JotaroTol/openwrt-mf90-reboot/raw/main/install.sh
     chmod +x /tmp/install.sh
     /tmp/install.sh
     ```
