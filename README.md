@@ -24,7 +24,7 @@ Script untuk me-reboot modem ZTE MF90 dari perangkat OpenWrt. Praktis untuk otom
 * **Jalankan Script di Terminal**
 
     ```bash
-    wget --no-check-certificate -O /tmp/install.sh https://github.com/JotaroTol/openwrt-mf90-reboot/raw/main/install.sh
+    get --no-check-certificate -O /tmp/install.sh https://raw.githubusercontent.com/JotaroTol/openwrt-mf90-reboot/refs/heads/master/install.sh
     chmod +x /tmp/install.sh
     /tmp/install.sh
     ```
