@@ -20,8 +20,8 @@ install_python_pip() {
     echo "Memeriksa instalasi Python dan pip..."
     if ! command_exists "$PYTHON_CMD"; then
         echo "Python3 tidak ditemukan. Mencoba menginstal..."
-        opkg update || { echo "Gagal update opkg. Cek koneksi internet Anda."; exit 1; }
-        opkg install python3 || { echo "Gagal menginstal Python3. Pastikan repositori OpenWrt Anda dikonfigurasi dengan benar."; exit 1; }
+        opkg update || { echo "Gagal update opkg. Cek koneksi internet."; exit 1; }
+        opkg install python3 || { echo "Gagal menginstal Python3. Pastikan repositori OpenWrt dikonfigurasi dengan benar."; exit 1; }
         if ! command_exists "$PYTHON_CMD"; then
             echo "Gagal menginstal Python3. Silakan instal secara manual: opkg update && opkg install python3"
             exit 1
@@ -30,8 +30,8 @@ install_python_pip() {
 
     if ! command_exists "$PIP_CMD"; then
         echo "pip3 tidak ditemukan. Mencoba menginstal..."
-        opkg update || { echo "Gagal update opkg. Cek koneksi internet Anda."; exit 1; }
-        opkg install python3-pip || { echo "Gagal menginstal pip3. Pastikan repositori OpenWrt Anda dikonfigurasi dengan benar."; exit 1; }
+        opkg update || { echo "Gagal update opkg. Cek koneksi internet."; exit 1; }
+        opkg install python3-pip || { echo "Gagal menginstal pip3. Pastikan repositori OpenWrt dikonfigurasi dengan benar."; exit 1; }
         if ! command_exists "$PIP_CMD"; then
             echo "Gagal menginstal pip3. Silakan instal secara manual: opkg update && opkg install python3-pip"
             exit 1
@@ -43,16 +43,16 @@ install_python_pip() {
 
 echo "=================================================="
 echo "  Installer Script untuk ZTE MF90 Modem Rebooter  "
-echo "           (Diaplikasikan di OpenWrt STB B860H)   "
+echo "           (Tested OpenWrt STB B860H)             "
 echo "=================================================="
 echo ""
 
-read -p "Apakah Anda ingin menginstal Internet Detector? (y/n): " install_detector_choice
+read -p "Apakah ingin menginstal Internet Detector? (y/n): " install_detector_choice
 echo ""
 
 if [ "$install_detector_choice" = "y" ] || [ "$install_detector_choice" = "Y" ]; then
     echo "Memulai instalasi Internet Detector..."
-    opkg update || { echo "Gagal update opkg. Cek koneksi internet Anda."; exit 1; }
+    opkg update || { echo "Gagal update opkg. Cek koneksi internet."; exit 1; }
 
     echo "Mengunduh dan menginstal internet-detector..."
     wget --no-check-certificate -O /tmp/internet-detector_1.6.0-r1_all.ipk https://github.com/gSpotx2f/packages-openwrt/raw/master/current/internet-detector_1.6.0-r1_all.ipk || { echo "Gagal mengunduh internet-detector."; exit 1; }
@@ -80,7 +80,7 @@ fi
 
 MODEM_IP=""
 while true; do
-    read -p "Berapa IP Modem ZTE MF90 Anda? (contoh: 192.168.0.1): " MODEM_IP
+    read -p "Berapa IP Modem ZTE MF90? (contoh: 192.168.0.1): " MODEM_IP
     if echo "$MODEM_IP" | grep -Eq '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$'; then
         echo "IP Modem yang dimasukkan: $MODEM_IP"
         break
@@ -91,12 +91,12 @@ done
 echo ""
 
 MODEM_PASSWORD=""
-read -s -p "Masukkan password modem ZTE MF90 Anda: " MODEM_PASSWORD
+read -s -p "Masukkan password modem ZTE MF90: " MODEM_PASSWORD
 echo "" 
 
 echo "Meng-encode password modem..."
 MODEM_PASSWORD_ENCODED=$(echo -n "$MODEM_PASSWORD" | "$PYTHON_CMD" -c 'import base64, sys; print(base64.b64encode(sys.stdin.buffer.read()).decode())')
-echo "Password modem Anda telah berhasil di-encode."
+echo "Password modem telah berhasil di-encode."
 echo ""
 
 install_python_pip
@@ -246,7 +246,7 @@ fi
 echo "=================================================="
 echo "  Instalasi Selesai!                               "
 echo "=================================================="
-echo "Anda sekarang dapat menjalankan script reboot dengan perintah:"
+echo "Sekarang dapat menjalankan script reboot dengan perintah:"
 echo "  $REBOOT_SCRIPT_PATH"
 echo ""
 echo "Terima kasih telah menggunakan script ini!"
